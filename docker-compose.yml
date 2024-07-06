@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  fastapi-backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    container_name: fastapi-backend
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:password@db:3306/exceldb
+    depends_on:
+      - db
+
+  vue-frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    container_name: vue-frontend
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: AIdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

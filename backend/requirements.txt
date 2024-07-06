@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+python-multipart
+bcrypt
+pandas
+openpyxl
+cryptography
